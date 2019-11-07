@@ -1,0 +1,17 @@
+
+
+Caption          : Microsoft Windows 10 Home
+CSName           : LAPTOP-V6UPL0NF
+Version          : 10.0.18362
+InstallDate      : 28/9/2019 3:39:43 AM
+LastBootUpTime   : 5/11/2019 2:10:27 PM
+LocalDateTime    : 6/11/2019 4:20:39 AM
+CurrentTimeZone  : 480
+CountryCode      : 1
+OSLanguage       : 1033
+SerialNumber     : 00325-95800-00000-AAOEM
+WindowsDirectory : C:\WINDOWS
+
+
+
+

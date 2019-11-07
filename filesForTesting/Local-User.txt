@@ -1,0 +1,11 @@
+
+Caption                            Domain          Name               FullName SID                                         
+-------                            ------          ----               -------- ---                                         
+LAPTOP-V6UPL0NF\Administrator      LAPTOP-V6UPL0NF Administrator               S-1-5-21-3569330549-651985202-789872849-500 
+LAPTOP-V6UPL0NF\DefaultAccount     LAPTOP-V6UPL0NF DefaultAccount              S-1-5-21-3569330549-651985202-789872849-503 
+LAPTOP-V6UPL0NF\farid              LAPTOP-V6UPL0NF farid                       S-1-5-21-3569330549-651985202-789872849-1001
+LAPTOP-V6UPL0NF\Guest              LAPTOP-V6UPL0NF Guest                       S-1-5-21-3569330549-651985202-789872849-501 
+LAPTOP-V6UPL0NF\WDAGUtilityAccount LAPTOP-V6UPL0NF WDAGUtilityAccount          S-1-5-21-3569330549-651985202-789872849-504 
+
+
+

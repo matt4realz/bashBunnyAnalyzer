@@ -1,0 +1,15 @@
+
+
+DeviceID      : CPU0
+Name          : Intel(R) Core(TM) i7-8250 CPU @ 4.30GHz
+Caption       : Intel64 Family 6 Model 142 Stepping 10
+Manufacturer  : GenuineIntel
+MaxClockSpeed : 1800
+L2CacheSize   : 1024
+L2CacheSpeed  : 
+L3CacheSize   : 6144
+L3CacheSpeed  : 0
+
+
+
+

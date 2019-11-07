@@ -1,0 +1,8 @@
+8.0 GB
+DeviceLocator  Capacity ConfiguredClockSpeed ConfiguredVoltage
+-------------  -------- -------------------- -----------------
+ChannelA-DIMM0 8.0 GB                   3200              1800
+ChannelB-DIMM0 8.0 GB                   3200              1800
+
+
+
