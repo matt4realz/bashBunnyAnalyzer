@@ -36,10 +36,9 @@ We will be referring to :
 3. The color will cycle through according to the "BashBunny LED Legend" stated above.
 4. Once the device's LED has turned green, the User may remove the device from the Target PC.
 5. User will simultaneously load the downloaded program from this GitHub to the PyCharm projects and set the configuration run path to start running from 'UI'.
-6. Alternatively, the User can also open up Command Prompt and 'cd' to the project folder before running (python3 ui.py)
-7. User now switches the Device to 'Storage' mode which is the switch location closest to the USB Header.
-8. User may now plug the device into their own Investigation PC.
-9. User will navigate to '/loot/info/*pathToTarget*' Folder on the Device.
-10. Copy out all the files within the folder into the "filesforTesting" folder in the analysis program
-11. User can now click "Analyze Files" on the program, once complete, all relevant data will be displayed.
-12. User may also click the "Export PDF" button on the program in order to generate the PDF with the relevant data.
+6. User now switches the Device to 'Storage' mode which is the switch location closest to the USB Header.
+7. User may now plug the device into their own Investigation PC.
+8. User will navigate to '/loot/info/*pathToTarget*' Folder on the Device.
+9. Copy out all the files within the folder into the "filesforTesting" folder in the analysis program
+10. User can now click "Analyze Files" on the program, once complete, all relevant data will be displayed.
+11. User may also click the "Export PDF" button on the program in order to generate the PDF with the relevant data.
