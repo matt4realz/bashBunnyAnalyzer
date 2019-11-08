@@ -1,5 +1,4 @@
 # bashBunnyAnalyzer By TeamNoSleep
-## Pre-Requisites
 
 ### As the product is still in its prototyping phase, we have to assume the following
 - The Target PC is powered on
