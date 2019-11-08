@@ -3,6 +3,8 @@ import time
 from tkinter import *
 from tkinter.ttk import Progressbar
 from tkinter import Button, Tk, HORIZONTAL
+import fpdf
+import unicodedata
 from os import getcwd
 from tkinter import filedialog
 
@@ -21,6 +23,8 @@ class MainGui(tk.Frame):
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
+        global profilingList
+        profilingList = {}
         global flist
         flist = []
         global wordList
@@ -115,9 +119,17 @@ class MainGui(tk.Frame):
                                                                                          & self.hardwareAnalysis(
             hardware_text)
                                                                                          & self.profilingAnalysis(
-            profiling_text))
+            profiling_text,pdf_btn))
         analysis_btn.grid(row=0, column=1)
         """Do All Method Button Ends Here"""
+
+        """PDF Button"""
+        pdf_btn = tk.Button(button_row_frame, text="Export To PDF", bg="white", fg="black", font="bold", padx="30", command=lambda: self.exportPDF(case_id_input,
+                                                                                                   lead_invest_input,
+                                                                                                   extract_date_input,
+                                                                                                   profiling_text, url_text))
+        pdf_btn.grid(row=0, column=2)
+        """PDF Button"""
 
 
 
@@ -129,7 +141,7 @@ class MainGui(tk.Frame):
         currentVal = 0
         loadingBarFrame = tk.Frame(self, bd=10, bg="black")
         loadingBarFrame.grid(row=5, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1500, mode='determinate')
+        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1350, mode='determinate')
         self.loadingBar.grid(row=0, column=1)
         """loadingBar Ends Here"""
 
@@ -137,21 +149,21 @@ class MainGui(tk.Frame):
         analysis_frame = tk.Frame(self, bd=10, bg="black")
         analysis_frame.grid(row=6, column=0, sticky=tk.W)
 
-        url_text = tk.Text(analysis_frame, width=62, height=25, state=DISABLED, bg="black", fg="white")
+        url_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
         url_text.grid(row=1, column=1)
         url_file_txt = tk.Label(analysis_frame, text="URL History", bg="black", fg="white", font="bold")
         url_file_txt.grid(row=0, column=1)
         """URL Text Area Ends Here"""
 
         """Services Text Start Here"""
-        services_text = tk.Text(analysis_frame, width=62, height=25, state=DISABLED, bg="black", fg="white")
+        services_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
         services_text.grid(row=1, column=2)
         services_file_txt = tk.Label(analysis_frame, text="Target's Running Services", bg="black", fg="white", font="bold")
         services_file_txt.grid(row=0, column=2)
         """Services Text Ends Here"""
 
         """Hardware Text Area Start Here"""
-        hardware_text = tk.Text(analysis_frame, width=62, height=25, state=DISABLED, bg="black", fg="white")
+        hardware_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
         hardware_text.grid(row=1, column=3)
         hardware_file_txt = tk.Label(analysis_frame, text="Hardware", bg="black", fg="white", font="bold")
         hardware_file_txt.grid(row=0, column=3)
@@ -161,7 +173,7 @@ class MainGui(tk.Frame):
         profiling_frame = tk.Frame(self, bd=10, bg="black")
         profiling_frame.grid(row=7, column=0)
 
-        profiling_text = tk.Text(profiling_frame, width=187, height=17, state=DISABLED, bg="black", fg="white")
+        profiling_text = tk.Text(profiling_frame, width=171, height=13, state=DISABLED, bg="black", fg="white")
         profiling_text.grid(row=1, column=1)
         profiling_file_txt = tk.Label(profiling_frame, text="Profiling", bg="black", fg="white", font="bold")
         profiling_file_txt.grid(row=0, column=1)
@@ -184,19 +196,6 @@ class MainGui(tk.Frame):
         return 0
 
     # Click listeners START
-    @staticmethod
-    def prompt_sheet_location(self):
-        """
-        Ask the user to select which sheet to use
-        :return: String, path of py file
-        """
-        current_working_directory = getcwd()  # where the code is ran from
-        filename = filedialog.askopenfilename(initialdir=current_working_directory, title="Select py file",
-                                              filetypes=(("Text files", "*.txt"), ("all files", "*.*")))
-
-        flist.append(filename)
-
-        print(flist)
 
     @staticmethod
     def urlHistory(url_text, stopwords):
@@ -204,7 +203,7 @@ class MainGui(tk.Frame):
 
         '''declare variables'''
         dictionary = {}
-        analysis_text_path = 'filesForTesting/browser2.txt'
+        analysis_text_path = 'filesForTesting/Browser History.txt'
         analysis_lines = []
         path = []
         url_main_key = []
@@ -215,8 +214,9 @@ class MainGui(tk.Frame):
          split URLs into words and append to global array wordList'''
 
         def getWordsFromURL(url):
+            url = re.sub(r'[^\x00-\x7F]+', '', url)
             '''gets rid of URL encoding characters for example %2f, %21, %22'''
-            url = urllib.parse.unquote(url)
+            #url = urllib.parse.unquote(url)
             '''split url into words'''
             words = re.compile(r'[\:/?=\-&\#\+]+', re.UNICODE).split(url)
             for word in words:
@@ -224,7 +224,7 @@ class MainGui(tk.Frame):
                     wordList.append(word.lower())
 
         '''Open file and read lines'''
-        with open(analysis_text_path, encoding='utf-16') as fp:
+        with open(analysis_text_path) as fp:
             '''add the first line to array'''
             line = fp.readline()
             analysis_lines.append(line)
@@ -289,6 +289,9 @@ class MainGui(tk.Frame):
 
         servicesList.sort()
 
+        global servicesPaths1
+        servicesPaths1 = servicesList.copy()
+
         if all(elem in systemDefence for elem in servicesList):
             systemDefence = systemDefence.copy()
 
@@ -307,19 +310,26 @@ class MainGui(tk.Frame):
 
         """Begin Method Here"""
 
-        service_file = pd.read_csv("filesForTesting/Hard Disk.txt", delim_whitespace=True, header=None,
-                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+        service_file = pd.read_csv("filesForTesting/Hard Disk.txt", sep="\s+", header=None,
+                                   names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = service_file.shape[0]
         i = 2
+        global storagedevice
         storagedevice = []
+
         while (i < count_row):
-            storagedevice.append(
-                "Storage name: " + service_file.a[i] + ", Storage Size: " + service_file.f[i] + "GB, Free Space: " +
-                service_file.j[i] + '\n')
+            if re.search("Rem", service_file.b[i]):
+                storagedevice.append(
+                    "Storage name: " + service_file.a[i] + ", Storage Size: " + service_file.f[i] + "GB, Free Space: " +
+                    service_file.j[i] + '\n')
+            elif re.search("Fixed", service_file.b[i]):
+                storagedevice.append(
+                    "Storage name: " + service_file.a[i] + ", Storage Size: " + service_file.g[i] + "GB, Free Space: " +
+                    service_file.j[i] + '\n')
             i += 1;
         storagedevice = ("".join(storagedevice))
 
-
+        global windows
         windows = []
         cpu_file = pd.read_csv("filesForTesting/CPU.txt", delim_whitespace=True, header=None,
                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
@@ -328,7 +338,7 @@ class MainGui(tk.Frame):
             cpu_file.h[1])
         windows = ("\n".join(windows))
 
-
+        global os_info
         os_info = []
         operatingsys = pd.read_csv("filesForTesting/Operating System.txt", delim_whitespace=True, header=None,
                                        names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
@@ -340,6 +350,7 @@ class MainGui(tk.Frame):
                                     names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = user_file.shape[0]
         i = 2
+        global users
         users = []
         while (i < count_row):
             users.append(user_file.c[i])
@@ -351,6 +362,7 @@ class MainGui(tk.Frame):
                               names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = ram.shape[0]
         i = 3
+        global ram_info
         ram_info = []
         while (i < count_row):
             ram_info.append("Ram Chips: " + ram.a[i] + " " + ram.b[i] + " Total Ram: " + ram.a[0])
@@ -362,6 +374,7 @@ class MainGui(tk.Frame):
                                         names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = win_user_pass.shape[0]
         i = 2
+        global passwordlist
         passwordlist = []
         while (i < count_row):
             passwordlist.append(
@@ -370,6 +383,27 @@ class MainGui(tk.Frame):
             i = i + 1;
         passwordlist = ("\n".join(passwordlist))
 
+        win_wifi_pass = pd.read_csv("filesForTesting/Wifi Password.txt", delim_whitespace=True, header=None,
+                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+        count_row = win_wifi_pass.shape[0]
+        i = 2
+        wifi_pass = []
+        while (i < count_row):
+            if (win_wifi_pass.b[i] != 'The'):
+                wifi_pass.append("WIFI Name " + win_wifi_pass.a[i] + '\n' + "Password: " + win_wifi_pass.b[i] + '\n')
+                i = i + 1
+            else:
+                i = i + 1
+        wifi_pass = ("\n".join(wifi_pass))
+
+        computer_ip = pd.read_csv("filesForTesting/Network.txt", delim_whitespace=True, header=None,
+                                  names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+        user = []
+        user.append("COMPUTER MAC ADDRESS: " + computer_ip.d[0] + '\n')
+        user.append("COMPUTER IP ADDRESS: " + computer_ip.d[1] + '\n')
+        user.append("PUBLIC IP ADDRESS: " + computer_ip.d[2] + '\n')
+
+        user = ("\n".join(user))
 
         hardware_text.insert(END, '-----USB Storage Devices-----')
         hardware_text.insert(END, '\n')
@@ -393,12 +427,20 @@ class MainGui(tk.Frame):
         hardware_text.insert(END, '-----Extracted User Accounts-----' + '\n')
         hardware_text.insert(END, '\n')
         hardware_text.insert(END, passwordlist + '\n')
+        hardware_text.insert(END, '-----Extracted WIFI Accounts-----' + '\n')
+        hardware_text.insert(END, '\n')
+        hardware_text.insert(END, wifi_pass + '\n')
+        hardware_text.insert(END, '-----IP ADDRESS-----' + '\n')
+        hardware_text.insert(END, '\n')
+        hardware_text.insert(END, user + '\n')
         hardware_text.config(state=DISABLED)
         return 0
 
+
     @staticmethod
-    def profilingAnalysis(profiling_text):
+    def profilingAnalysis(profiling_text, pdf_btn):
         profiling_text.config(state="normal")
+
 
         """Begin URL Analysis Here"""
         for key, value in urlDictionary.items():
@@ -408,29 +450,41 @@ class MainGui(tk.Frame):
                                           'The user uses a lot of social media, the site that was visited the most was ')
                     profiling_text.insert(END, "'" + key + "' " + str(value) + ' times')
                     profiling_text.insert(END,
-                                          ' this suggests that the target uses social media for browsing often' + '\n')
+                                          ' this suggests that the target uses social media for browsing often.' + '\n')
+                    profilingList[key] = key
+                    profilingList[value] = value
                 if key in schoolSites:
                     profiling_text.insert(END,
                                           'Based on the number of times the user visited ' + "'" + key + "'"
                                           + ' student portal a total of ' + str(
                                               value) + ' times' + ', this suggests that the user is likely to be a student there.' + '\n')
 
+                    profilingList[key] = key
+                    profilingList[value] = value
                 if key in messengers:
                     profiling_text.insert(END, 'The messenging app that the user uses the most often is ')
                     profiling_text.insert(END, "'" + key + "' " + str(value) + ' times,')
                     profiling_text.insert(END,
                                           ' this suggests that the target might have used this messenging site as a means of communication.' + '\n')
+                    profilingList[key] = key
+                    profilingList[value] = value
 
                 if key in drama:
                     profiling_text.insert(END,
                                           'The target also happens to be a major fan of Drama, with the most visited site being ')
                     profiling_text.insert(END, "'" + key + "' " + str(value) + ' times \n')
+                    profilingList[key] = key
+                    profilingList[value] = value
+
 
                 if key in healthFitness:
                     profiling_text.insert(END, 'The target displays potential narcissistic / self-concious traits '
-                                               'as the target has viewed ' + "'" + key + "'" + ' a total of ' + "'" + value + "'")
+                                               'as the target has viewed ' + "'" + key + "'" + ' a total of ' + "'" + str(value) + "'" + ' times.')
+
                     profiling_text.insert(END, '\n')
-                    profiling_text.insert(END, 'This suggests that ')
+                    profilingList[key] = key
+                    profilingList[value] = value
+
         """Begin Services Analysis Here"""
         if systemDefence != '':
             profiling_text.insert(END, '\n')
@@ -439,18 +493,19 @@ class MainGui(tk.Frame):
             profiling_text.insert(END, '===========================')
             profiling_text.insert(END, '\n')
             profiling_text.insert(END, systemDefence)
+            profiling_text.insert(END, '\n')
         if any("VPN" or "Password" in s for s in systemDefence):
             profiling_text.insert(END, '\n')
             profiling_text.insert(END, "It should be noted that the Target has VPN's and/or Password Managers "
                                        "Installed on their computer. This shows that the target is likely one who is "
-                                       "technically savvy and might have stored key password information within his "
+                                       "tech savvy and might have stored key password information within his "
                                        "computer." + '\n')
 
         """Begin Hardware Analysis Here"""
 
         profiling_text.config(state=DISABLED)
+        pdf_btn.config(state="normal")
         return 0
-
 
 
     @staticmethod
@@ -458,6 +513,80 @@ class MainGui(tk.Frame):
         url_input_path.config(text="")
         url_text.config(text="")
         url_button_btn.config(state="normal")
+        return 0
+
+
+
+    @staticmethod
+    def exportPDF(case_id_input, lead_invest_input, extract_date_input, profiling_text, url_text):
+
+        pdf = fpdf.FPDF(format='letter')
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+
+        pdf.write(12, "Team NoSleep's BashBunny Analyzer")
+        pdf.ln()
+        pdf.write(10, "=================================")
+        pdf.ln()
+        pdf.write(8, "Case ID : "+str(case_id_input.get()))
+        pdf.ln()
+        pdf.write(8, "Lead Investigator : "+str(lead_invest_input.get()))
+        pdf.ln()
+        pdf.write(8, "Data Extracted Date : " + str(extract_date_input.get()))
+        pdf.ln()
+        pdf.ln()
+        pdf.write(10, "URL Keyword and Hit Counts :")
+        pdf.ln()
+        pdf.write(10, "=================================")
+        pdf.ln()
+        for k,v in urlDictionary.items():
+            if v > 15:
+                pdf.write(8, k + ' - ' + str(v)+'hits')
+                pdf.ln()
+
+        pdf.ln()
+        pdf.write(10, "=================================")
+        pdf.ln()
+        pdf.write(10, "Target System Services :")
+        pdf.ln()
+        pdf.write(10, "=================================")
+        pdf.ln()
+
+        for line in servicesPaths1:
+            pdf.write(8, line)
+            pdf.ln()
+
+        pdf.write(8, "Target Hardware Data : ")
+        pdf.ln()
+        pdf.write(8, "========================")
+        pdf.ln()
+
+
+        pdf.write(8, storagedevice)
+        pdf.ln()
+        pdf.write(8, windows)
+        pdf.ln()
+        pdf.write(8, os_info)
+        pdf.ln()
+        pdf.ln()
+        pdf.write(8, users)
+        pdf.ln()
+        pdf.ln()
+        pdf.write(8, ram_info)
+        pdf.ln()
+        pdf.ln()
+        pdf.write(8, passwordlist)
+        pdf.ln()
+        pdf.ln()
+
+        pdf.write(8, "Target Personality Analysis : ")
+        pdf.ln()
+        pdf.write(8, "==============================")
+        pdf.ln()
+        pdf.write(8, profiling_text.get("1.0", END))
+
+        pdf.output("Report.pdf")
+
         return 0
 
 

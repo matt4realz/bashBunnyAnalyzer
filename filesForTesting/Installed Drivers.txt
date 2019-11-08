@@ -1,0 +1,162 @@
+﻿DeviceName                                                      FriendlyName                                           
+----------                                                      ------------                                           
+Local Print Queue                                               Adobe PDF                                              
+Local Print Queue                                               Fax                                                    
+Local Print Queue                                               Microsoft XPS Document Writer                          
+Local Print Queue                                               Microsoft Print to PDF                                 
+Local Print Queue                                               OneNote                                                
+Local Print Queue                                               Send To OneNote 2016                                   
+Local Print Queue                                               Root Print Queue                                       
+WAN Miniport (Network Monitor)                                  WAN Miniport (Network Monitor)                         
+WAN Miniport (IPv6)                                             WAN Miniport (IPv6)                                    
+WAN Miniport (IP)                                               WAN Miniport (IP)                                      
+WAN Miniport (PPPOE)                                            WAN Miniport (PPPOE)                                   
+WAN Miniport (PPTP)                                             WAN Miniport (PPTP)                                    
+WAN Miniport (L2TP)                                             WAN Miniport (L2TP)                                    
+WAN Miniport (IKEv2)                                            WAN Miniport (IKEv2)                                   
+WAN Miniport (SSTP)                                             WAN Miniport (SSTP)                                    
+Generic software device                                         Microsoft RRAS Root Enumerator                         
+Generic software device                                         Microsoft GS Wavetable Synth                           
+Generic software device                                         Microsoft Device Association Root Enumerator           
+Generic software device                                         Wi-Fi                                                  
+Generic software device                                         Bluetooth                                              
+Generic software device                                         Microsoft Radio Device Enumeration Bus                 
+Remote Desktop Device Redirector Bus                                                                                   
+Citrix Indirect Display Adapter                                                                                        
+Citrix Virtual Bus Enumerator                                                                                          
+Plug and Play Software Device Enumerator                                                                               
+Microsoft System Management BIOS Driver                                                                                
+Microsoft Network Adapter Multiplexor Driver                    Microsoft Network Adapter Multiplexor Driver           
+NDIS Virtual Network Adapter Enumerator                                                                                
+VMware VMCI Host Device                                                                                                
+Microsoft Basic Render Driver                                                                                          
+Acer Inc. System Firmware 1.14                                                                                         
+Microsoft UEFI-Compliant System                                                                                        
+ACPI Fixed Feature Button                                                                                              
+Intel(R) Dynamic Platform and Thermal Framework Manager                                                                
+Motherboard resources                                                                                                  
+Trusted Platform Module 2.0                                                                                            
+Microsoft Windows Management Interface for ACPI                                                                        
+HID-compliant wireless radio controls                                                                                  
+Acer Airplane Mode Controller                                                                                          
+ACPI Sleep Button                                                                                                      
+ACPI Lid                                                                                                               
+ACPI Thermal Zone                                                                                                      
+ACPI Thermal Zone                                                                                                      
+Intel(R) Power Engine Plug-in                                                                                          
+ACPI Processor Aggregator                                                                                              
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Intel Processor                                                 Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz               
+Microsoft Windows Management Interface for ACPI                                                                        
+Microsoft Windows Management Interface for ACPI                                                                        
+Motherboard resources                                                                                                  
+Intel(R) Serial IO GPIO Host Controller - INT344B                                                                      
+Motherboard resources                                                                                                  
+Motherboard resources                                                                                                  
+Motherboard resources                                                                                                  
+Mobile Intel(R) Processor Family I/O SMBUS - 9D23                                                                      
+Intel(R) Display Audio                                                                                                 
+Audio Endpoint                                                  Speakers (Realtek High Definition Audio(SST))          
+Realtek High Definition Audio(SST)                                                                                     
+Audio Endpoint                                                  Microphone Array (Intel® Smart Sound Technology (Int...
+Intel® Smart Sound Technology (Intel® SST)                                                                             
+Detection Verification                                                                                                 
+Intel(R) Smart Sound Technology (Intel(R) SST) OED                                                                     
+Intel(R) Smart Sound Technology (Intel(R) SST) Audio Controller                                                        
+Mobile Intel(R) Processor Family I/O PMC - 9D21                                                                        
+Standard PS/2 Keyboard                                                                                                 
+Intel(R) Dynamic Platform and Thermal Framework Generic Part...                                                        
+Microsoft ACPI-Compliant Control Method Battery                                                                        
+Microsoft AC Adapter                                                                                                   
+Microsoft ACPI-Compliant Embedded Controller                                                                           
+Motherboard resources                                                                                                  
+System timer                                                                                                           
+System CMOS/real time clock                                                                                            
+Motherboard resources                                                                                                  
+Programmable interrupt controller                                                                                      
+High precision event timer                                                                                             
+Legacy device                                                                                                          
+Mobile 7th/8th Generation Intel(R) Processor Family I/O LPC ...                                                        
+Microsoft Wi-Fi Direct Virtual Adapter                          Microsoft Wi-Fi Direct Virtual Adapter #4              
+Microsoft Wi-Fi Direct Virtual Adapter                          Microsoft Wi-Fi Direct Virtual Adapter #3              
+Intel(R) Dual Band Wireless-AC 7265                             Intel(R) Dual Band Wireless-AC 7265                    
+Mobile Intel(R) Processor Family I/O PCI Express Root Port #...                                                        
+Mobile Intel(R) Processor Family I/O PCI Express Root Port #...                                                        
+Disk drive                                                      KINGSTON RBUSNS8154P3256GJ1                            
+Intel(R) Chipset SATA/PCIe RST Premium Controller                                                                      
+Intel(R) Management Engine Interface                                                                                   
+Synaptics HID Device                                                                                                   
+Microsoft Input Configuration Device                                                                                   
+HID-compliant touch pad                                                                                                
+HID-compliant mouse                                                                                                    
+I2C HID Device                                                                                                         
+Intel(R) Serial IO I2C Host Controller - 9D61                                                                          
+Intel(R) Serial IO I2C Host Controller - 9D60                                                                          
+Mobile Intel(R) Processor Family I/O Thermal subsystem - 9D31                                                          
+Disk drive                                                      USB Device                                             
+USB Mass Storage Device                                                                                                
+USB Serial Device                                               USB Serial Device (COM5)                               
+USB Composite Device                                                                                                   
+EgisTec Touch Fingerprint Sensor                                                                                       
+USB Video Device                                                HD WebCam                                              
+USB Composite Device                                                                                                   
+Bluetooth Device (Personal Area Network)                        Bluetooth Device (Personal Area Network)               
+Bluetooth Device                                                NYPCOW24                                               
+CDP Proximal Transport Service                                                                                         
+Device Identification Service                                                                                          
+Microsoft Bluetooth Hands-Free Audio device                     NYPCOW24 Hands-Free HF Audio                           
+Microsoft Bluetooth Hands-Free Profile Handsfree role           NYPCOW24 Hands-Free HF                                 
+Personal Area Network Service                                                                                          
+Microsoft Bluetooth Avrcp Transport Driver                      NYPCOW24 Avrcp Transport                               
+Microsoft Bluetooth Avrcp Transport Driver                      NYPCOW24 Avrcp Transport                               
+Audio Source Service                                                                                                   
+Service Discovery Service                                                                                              
+Microsoft Bluetooth Enumerator                                                                                         
+Bluetooth Device (RFCOMM Protocol TDI)                          Bluetooth Device (RFCOMM Protocol TDI)                 
+HID-compliant vendor-defined device                                                                                    
+HID-compliant vendor-defined device                                                                                    
+HID-compliant vendor-defined device                                                                                    
+HID Keyboard Device                                                                                                    
+HID-compliant mouse                                                                                                    
+Bluetooth Low Energy GATT compliant HID device                                                                         
+Bluetooth LE Generic Attribute Service                                                                                 
+Device Information Service                                                                                             
+Generic Attribute Profile                                                                                              
+Generic Access Profile                                                                                                 
+Bluetooth LE Device                                             Surface Mobile Mouse                                   
+Microsoft Bluetooth LE Enumerator                                                                                      
+Intel(R) Wireless Bluetooth(R)                                                                                         
+USB Root Hub (USB 3.0)                                                                                                 
+USB xHCI Compliant Host Controller                              Intel(R) USB 3.0 eXtensible Host Controller - 1.0 (M...
+Intel(R) Dynamic Platform and Thermal Framework Processor Pa...                                                        
+Generic PnP Monitor                                                                                                    
+Intel(R) UHD Graphics 620                                                                                              
+Intel(R) Xeon(R) E3 - 1200 v6/7th Gen Intel(R) Core(TM) Host...                                                        
+PCI Express Root Complex                                                                                               
+Microsoft ACPI-Compliant System                                                                                        
+ACPI x64-based PC                                                                                                      
+Charge Arbitration Driver                                                                                              
+UMBus Root Bus Enumerator                                                                                              
+Microsoft Kernel Debug Network Adapter                          Microsoft Kernel Debug Network Adapter                 
+Microsoft Storage Spaces Controller                                                                                    
+Microsoft Virtual Drive Enumerator                                                                                     
+Composite Bus Enumerator                                                                                               
+Microsoft Hyper-V Virtualization Infrastructure Driver                                                                 
+VMware Virtual Ethernet Adapter for VMnet8                      VMware Virtual Ethernet Adapter for VMnet8             
+VMware Virtual Ethernet Adapter for VMnet1                      VMware Virtual Ethernet Adapter for VMnet1             
+VirtualBox Host-Only Ethernet Adapter                           VirtualBox Host-Only Ethernet Adapter                  
+Cisco AnyConnect Secure Mobility Client Virtual Miniport Ada... Cisco AnyConnect Secure Mobility Client Virtual Mini...
+Microsoft Basic Display Driver                                                                                         
+PANGP Virtual Ethernet Adapter                                  PANGP Virtual Ethernet Adapter #2                      
+Volume                                                                                                                 
+Volume                                                                                                                 
+Volume                                                                                                                 
+Volume                                                                                                                 
+Volume                                                                                                                 
+Volume Manager

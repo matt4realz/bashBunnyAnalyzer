@@ -1,0 +1,6 @@
+﻿Manufacturer : KBL
+Model        : 
+Name         : Base Board
+SerialNumber : NBGXL1100883300F446600
+SKU          : 
+Product      : Strongbow_KL

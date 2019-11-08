@@ -1,0 +1,5 @@
+﻿SMBIOSBIOSVersion : V1.14
+Manufacturer      : Insyde Corp.
+Name              : V1.14
+SerialNumber      : NXGYQSG005833068346600
+Version           : ACRSYS - 0

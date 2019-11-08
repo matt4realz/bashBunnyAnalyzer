@@ -1,0 +1,10 @@
+﻿FriendlyName                   
+------------                   
+USB Device                     
+USB Device                     
+Generic Flash Disk USB Device  
+Generic Flash Disk USB Device  
+SanDisk Cruzer Spark USB Device
+TOSHIBA TransMemory USB Device 
+TOSHIBA TransMemory USB Device 
+TOSHIBA TransMemory USB Device

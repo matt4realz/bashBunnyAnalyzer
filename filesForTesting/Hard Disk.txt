@@ -1,8 +1,4 @@
-
-DeviceID VolumeName DriveType         FileSystem VolumeSerialNumber  Size GB FreeSpace GB FreeSpace %
+﻿DeviceID VolumeName DriveType         FileSystem VolumeSerialNumber  Size GB FreeSpace GB FreeSpace %
 -------- ---------- ---------         ---------- ------------------  ------- ------------ -----------
-C:       Acer       local disk        NTFS       94489B21           237.4 GB      28.6 GB       12.1%
-D:       BashBunny  Removable disk    FAT32      CDDEAB1F             2.0 GB       1.9 GB       96.7%
-
-
-
+C:       Acer       Fixed local disk  NTFS       94489B21           237.4 GB      27.1 GB       11.4%
+D:       BashBunny  Removable disk    FAT32      CDDEAB1F             2.0 GB       1.9 GB       95.8%
