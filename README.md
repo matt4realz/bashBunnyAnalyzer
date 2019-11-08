@@ -5,6 +5,7 @@
 - The Target PC is powered on
 - The Target PC is successfully logged in
 - The Target PC is running Windows 7 and Later
+- The Target PC does not have other anti-virus software aside from Windows Defender as the Payloads are invasive
 
 
 ### You will need the following external libraries & programms installed
