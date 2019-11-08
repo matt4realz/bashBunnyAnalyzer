@@ -8,7 +8,7 @@
 
 
 ## You will need the following external libraries & programms installed
-- Payloads from our GitHub inside "Switch2" folder when BashBunny is in "Storage" mode
+- Payloads from our GitHub inside "Switch2.zip" when BashBunny is in "Storage" mode
 - Python3 and above
 - tkinter (pip install tkinter)
 - pandas (pip install pandas)
