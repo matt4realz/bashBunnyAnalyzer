@@ -1,32 +1,32 @@
 # bashBunnyAnalyzer By TeamNoSleep
 
-### As the product is still in its prototyping phase, we have to assume the following
+## As the product is still in its prototyping phase, we have to assume the following
 - The Target PC is powered on
 - The Target PC is successfully logged in
 - The Target PC is running Windows 7 and Later
 - The Target PC does not have other anti-virus software aside from Windows Defender as the Payloads are invasive
 
 
-### You will need the following external libraries & programms installed
+## You will need the following external libraries & programms installed
 - Payloads from our GitHub inside "Switch2" folder when BashBunny is in "Storage" mode
 - Python3 and above
 - tkinter (pip install tkinter)
 - pandas (pip install pandas)
 - fpdf (pip install fpdf)
 
-### You will need the following tools
+## You will need the following tools
 - 'Target' PC for collecting evidence
 - 'Investigator' PC for triage analysis of evidence
 - 'BashBunny' by Hak5
 
-### Bashbunny LED Legend
+## Bashbunny LED Legend
 - Purple > Initialising
 - Blue > Bypassing Windows Defender
 - Cyan > Attacking In Progress
 - Green > Attack Completed
 
-### Program Flow Guide
-We will be referring to :
+## Program Flow Guide
+### We will be referring to :
 - the suspect as 'Target'
 - the investigator as 'User'
 - the BashBunny as 'device'
