@@ -279,7 +279,7 @@ class MainGui(tk.Frame):
         services_text.config(state="normal")
 
         """Begin Method Here"""
-        service_file = pd.read_fwf(servicesPath)
+        service_file = pd.read_fwf(servicesPath, encoding='utf-16')
         service_file.columns = ["State", "Name", "App", "Path"]
         for line in service_file.Name[1:]:
             servicesList.append(line)
@@ -305,21 +305,21 @@ class MainGui(tk.Frame):
         """Begin Method Here"""
 
         service_file = pd.read_csv("filesForTesting/Hard Disk.txt", delim_whitespace=True, header=None,
-                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         count_row = service_file.shape[0]
         i = 2
         storagedevice = []
         while (i < count_row):
             storagedevice.append(
-                "Storage name: " + service_file.a[i] + ", Storage Size: " + service_file.f[i] + "GB, Free Space: " +
-                service_file.j[i] + '\n')
+                "Storage name: " + str(service_file.a[i]) + ", Storage Size: " + str(service_file.f[i]) + "GB, Free Space: " +
+                str(service_file.j[i]) + '\n')
             i += 1;
         storagedevice = ("".join(storagedevice))
 
 
         windows = []
         cpu_file = pd.read_csv("filesForTesting/CPU.txt", delim_whitespace=True, header=None,
-                                   names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                   names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         windows.append(
             "Hardware Specs: " + cpu_file.c[1] + cpu_file.d[1] + cpu_file.e[1] + cpu_file.f[1] + cpu_file.g[1] +
             cpu_file.h[1])
@@ -328,13 +328,13 @@ class MainGui(tk.Frame):
 
         os_info = []
         operatingsys = pd.read_csv("filesForTesting/Operating System.txt", delim_whitespace=True, header=None,
-                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         os_info.append("OS: " + operatingsys.c[0] + " " + operatingsys.d[0] + " " + operatingsys.e[0])
         os_info = ("\n".join(os_info))
 
 
         user_file = pd.read_csv("filesForTesting/Local-User.txt", delim_whitespace=True, header=None,
-                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         count_row = user_file.shape[0]
         i = 2
         users = []
@@ -345,7 +345,7 @@ class MainGui(tk.Frame):
 
 
         ram = pd.read_csv("filesForTesting/RAM.txt", delim_whitespace=True, header=None,
-                              names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                              names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         count_row = ram.shape[0]
         i = 3
         ram_info = []
@@ -356,7 +356,7 @@ class MainGui(tk.Frame):
 
 
         win_user_pass = pd.read_csv("filesForTesting/Windows User Passwords.txt", delim_whitespace=True, header=None,
-                                        names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                        names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"], encoding='utf-16')
         count_row = win_user_pass.shape[0]
         i = 2
         passwordlist = []
@@ -400,7 +400,7 @@ class MainGui(tk.Frame):
 
         """Begin URL Analysis Here"""
         for key, value in urlDictionary.items():
-            if value >= 50:
+            if value >= 40:
                 if key in socialMedia:
                     profiling_text.insert(END,
                                           'The user uses a lot of social media, the site that was visited the most was ')
@@ -419,7 +419,7 @@ class MainGui(tk.Frame):
 
                 if key in drama:
                     profiling_text.insert(END, 'The target also happens to be a major fan of Drama, with the most visited site being ')
-                    profiling_text.insert(END, "'" + key + "' " + str(value) + ' times \n' )
+                    profiling_text.insert(END, "'" + key + "' " + str(value) + ' times \n')
 
         """Begin Services Analysis Here"""
         if systemDefence != '':
