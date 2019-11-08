@@ -49,7 +49,7 @@ class MainGui(tk.Frame):
         messengers = ['web.whatsapp.com', 'web.telegram.com']
 
         global schoolSites
-        schoolSites = ['myportal.nus.edu.sg', 'NTU', 'xsite.singaporetech.edu.sg', 'SUTD', 'suss.edu.sg']
+        schoolSites = ['myportal.nus.edu.sg', 'NTU', 'xsite.singaporetech.edu.sg', 'SUTD']
 
         global socialMedia
         socialMedia = ['facebook.com', 'Instagram', 'Twitter']
@@ -58,10 +58,10 @@ class MainGui(tk.Frame):
         terrorism = ["bombs", "guns", "grenade", "fire"]
 
         global searchSites
-        searchSites = ["www.google.com", "bing", "yahoo"]
+        searchSites = ["google", "bing", "yahoo"]
 
         global healthFitness
-        healthFitness = ["www.menshealth.com"]
+        healthFitness = ['www.menshealth.com']
 
         with open("filesForTesting/stopwords.txt", "r") as filestream:
             for line in filestream:
@@ -224,7 +224,7 @@ class MainGui(tk.Frame):
                     wordList.append(word.lower())
 
         '''Open file and read lines'''
-        with open(analysis_text_path) as fp:
+        with open(analysis_text_path, encoding='utf-16') as fp:
             '''add the first line to array'''
             line = fp.readline()
             analysis_lines.append(line)
@@ -282,7 +282,7 @@ class MainGui(tk.Frame):
         services_text.config(state="normal")
 
         """Begin Method Here"""
-        service_file = pd.read_fwf(servicesPath, encoding='utf-16')
+        service_file = pd.read_fwf(servicesPath)
         service_file.columns = ["State", "Name", "App", "Path"]
         for line in service_file.Name[1:]:
             servicesList.append(line)
@@ -314,8 +314,8 @@ class MainGui(tk.Frame):
         storagedevice = []
         while (i < count_row):
             storagedevice.append(
-                "Storage name: " + str(service_file.a[i]) + ", Storage Size: " + str(service_file.f[i]) + "GB, Free Space: " +
-                str(service_file.j[i]) + '\n')
+                "Storage name: " + service_file.a[i] + ", Storage Size: " + service_file.f[i] + "GB, Free Space: " +
+                service_file.j[i] + '\n')
             i += 1;
         storagedevice = ("".join(storagedevice))
 
@@ -400,7 +400,6 @@ class MainGui(tk.Frame):
     def profilingAnalysis(profiling_text):
         profiling_text.config(state="normal")
 
-
         """Begin URL Analysis Here"""
         for key, value in urlDictionary.items():
             if value >= 40:
@@ -413,15 +412,18 @@ class MainGui(tk.Frame):
                 if key in schoolSites:
                     profiling_text.insert(END,
                                           'Based on the number of times the user visited ' + "'" + key + "'"
-                                          + ' student portal a total of ' + str(value) + ' times' + ', this suggests that the user is likely to be a student there.' + '\n')
+                                          + ' student portal a total of ' + str(
+                                              value) + ' times' + ', this suggests that the user is likely to be a student there.' + '\n')
 
                 if key in messengers:
                     profiling_text.insert(END, 'The messenging app that the user uses the most often is ')
                     profiling_text.insert(END, "'" + key + "' " + str(value) + ' times,')
-                    profiling_text.insert(END, ' this suggests that the target might have used this messenging site as a means of communication.' + '\n')
+                    profiling_text.insert(END,
+                                          ' this suggests that the target might have used this messenging site as a means of communication.' + '\n')
 
                 if key in drama:
-                    profiling_text.insert(END, 'The target also happens to be a major fan of Drama, with the most visited site being ')
+                    profiling_text.insert(END,
+                                          'The target also happens to be a major fan of Drama, with the most visited site being ')
                     profiling_text.insert(END, "'" + key + "' " + str(value) + ' times \n')
 
                 if key in healthFitness:
@@ -431,12 +433,12 @@ class MainGui(tk.Frame):
                     profiling_text.insert(END, 'This suggests that ')
         """Begin Services Analysis Here"""
         if systemDefence != '':
-                profiling_text.insert(END, '\n')
-                profiling_text.insert(END, "Target's Potential Defences")
-                profiling_text.insert(END, '\n')
-                profiling_text.insert(END, '===========================')
-                profiling_text.insert(END, '\n')
-                profiling_text.insert(END, systemDefence)
+            profiling_text.insert(END, '\n')
+            profiling_text.insert(END, "Target's Potential Defences")
+            profiling_text.insert(END, '\n')
+            profiling_text.insert(END, '===========================')
+            profiling_text.insert(END, '\n')
+            profiling_text.insert(END, systemDefence)
         if any("VPN" or "Password" in s for s in systemDefence):
             profiling_text.insert(END, '\n')
             profiling_text.insert(END, "It should be noted that the Target has VPN's and/or Password Managers "
@@ -448,6 +450,8 @@ class MainGui(tk.Frame):
 
         profiling_text.config(state=DISABLED)
         return 0
+
+
 
     @staticmethod
     def reset_frame(url_input_path, url_text, url_button_btn):
