@@ -55,3 +55,6 @@
 10. Copy out all the files within the folder into the "filesforTesting" folder in the analysis program
 11. User can now click "Analyze Files" on the program, once complete, all relevant data will be displayed.
 12. User may also click the "Export PDF" button on the program in order to generate the PDF with the relevant data.
+
+## Youtube Video Guide
+> https://youtu.be/o_5unbGg0-g
