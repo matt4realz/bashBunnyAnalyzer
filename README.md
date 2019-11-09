@@ -23,6 +23,8 @@
 - tkinter (pip install tkinter)
 - pandas (pip install pandas)
 - fpdf (pip install fpdf)
+- wordcloud (pip install wordcloud)
+- matplotlib (pip install matplotlib)
 
 ## You will need the following tools
 - 'Target' PC for collecting evidence
