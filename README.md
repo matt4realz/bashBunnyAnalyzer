@@ -43,14 +43,15 @@
 - the investigator as 'User'
 - the BashBunny as 'device'
 
-1. User starts by ensuring that the Device mode is in 'AttackMode2' which is the most center switch and plug it into the PC.
-2. At this point, just allow the Device to run its course as the Windows PowerShell payloads are pre-configured inside.
-3. The color will cycle through according to the "BashBunny LED Legend" stated above.
-4. Once the device's LED has turned green, the User may remove the device from the Target PC.
-5. User will simultaneously load the downloaded program from this GitHub to the PyCharm projects and set the configuration run path to start running from 'UI'.
-6. User now switches the Device to 'Storage' mode which is the switch location closest to the USB Header.
-7. User may now plug the device into their own Investigation PC.
-8. User will navigate to '/loot/info/*pathToTarget*' Folder on the Device.
-9. Copy out all the files within the folder into the "filesforTesting" folder in the analysis program
-10. User can now click "Analyze Files" on the program, once complete, all relevant data will be displayed.
-11. User may also click the "Export PDF" button on the program in order to generate the PDF with the relevant data.
+1. User loads the contents of the "switch2.zip" file into the Device's "Payloads" folder.
+2. User ensures that the Device mode is in 'AttackMode2' which is the center switch and plug it into the Target's PC.
+3. At this point, just allow the Device to run its course as the Windows PowerShell payloads are invading the target system.
+4. The color will cycle through according to the "BashBunny LED Legend" stated above.
+5. Once the device's LED has turned green, the User may remove the device from the Target PC.
+6. User will simultaneously load the downloaded program from this GitHub to the PyCharm projects and set the configuration run path to start running from 'UI'.
+7. User now switches the Device to 'Storage' mode which is the switch location closest to the USB Header.
+8. User may now plug the device into their own Investigation PC.
+9. User will navigate to '/loot/info/*pathToTarget*' Folder on the Device.
+10. Copy out all the files within the folder into the "filesforTesting" folder in the analysis program
+11. User can now click "Analyze Files" on the program, once complete, all relevant data will be displayed.
+12. User may also click the "Export PDF" button on the program in order to generate the PDF with the relevant data.
