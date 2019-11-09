@@ -17,6 +17,8 @@ import re
 from collections import OrderedDict
 import urllib
 from urllib.parse import urlparse
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 
 class MainGui(tk.Frame):
@@ -33,6 +35,10 @@ class MainGui(tk.Frame):
         displaySim = float(0.0)
         global barVar
         barVar = 0
+
+        """Need this global variable FARID"""
+        global priority_dict
+        priority_dict = {}
 
         global d_descending
         d_descending = []
@@ -104,6 +110,25 @@ class MainGui(tk.Frame):
 
         """Investigation Detail End Here"""
 
+        '''Function to Generate Word Cloud'''
+
+        def generate_wordcloud():
+            """Uncoment this to use dataset for list eg. prioritized"""
+            # """Join list into one string"""
+            # unique_string = (" ").join(prioritized)
+            # wc = WordCloud(background_color="black", width=2000, height=2000,contour_color="black", max_words=30, relative_scaling=0.5, normalize_plurals=False).generate(unique_string)
+
+            """Generate word cloud based on dictionary"""
+            wc = WordCloud(background_color="black", width=2000, height=2000, contour_color="black", max_words=30,
+                           relative_scaling=0.5, normalize_plurals=False).generate_from_frequencies(priority_dict)
+
+            fig = plt.figure(figsize=(10, 7))
+            fig.suptitle("Top 30 Most Visited Websites")
+            plt.imshow(wc, interpolation="bilinear")
+            plt.axis("on")
+            plt.show()
+
+
 
 
         """Button Frame"""
@@ -119,19 +144,23 @@ class MainGui(tk.Frame):
                                                                                          & self.hardwareAnalysis(
             hardware_text)
                                                                                          & self.profilingAnalysis(
-            profiling_text,pdf_btn))
+            profiling_text, pdf_btn, wc_button, analysis_btn))
         analysis_btn.grid(row=0, column=1)
         """Do All Method Button Ends Here"""
 
         """PDF Button"""
-        pdf_btn = tk.Button(button_row_frame, text="Export To PDF", bg="white", fg="black", font="bold", padx="30", command=lambda: self.exportPDF(case_id_input,
+        pdf_btn = tk.Button(button_row_frame, text="Export To PDF", bg="white",
+                            fg="black", state=DISABLED, font="bold", padx="30", command=lambda: self.exportPDF(case_id_input,
                                                                                                    lead_invest_input,
                                                                                                    extract_date_input,
                                                                                                    profiling_text, url_text))
         pdf_btn.grid(row=0, column=2)
         """PDF Button"""
 
-
+        """On Click Button that generates the Word Cloud"""
+        wc_button = tk.Button(button_row_frame, text="Generate Word Cloud", bg="white", fg="black", font="bold",
+                              padx="30", state=DISABLED, command=lambda: generate_wordcloud())
+        wc_button.grid(row=0, column=3)
 
         
 
@@ -207,6 +236,8 @@ class MainGui(tk.Frame):
         analysis_lines = []
         path = []
         url_main_key = []
+        """Declare local list for storing priority words"""
+        prioritized = []
 
         print("\n")
 
@@ -249,6 +280,17 @@ class MainGui(tk.Frame):
         d_descending = OrderedDict(sorted(dictionary.items(), key=lambda kv: kv[1], reverse=True))
         global urlDictionary
         urlDictionary = d_descending.copy()
+
+        """FOR WORD CLOUD"""
+        '''populate priority list'''
+        for i in wordList:
+            if "www" in i or ".com" in i:
+                prioritized.append(str(i))
+
+        '''populate priority dictionary for word cloud'''
+        for x in prioritized:
+            priority_dict[x] = prioritized.count(x)
+        """END OF WORD CLOUD"""
 
         '''print to console'''
         for key, value in d_descending.items():
@@ -438,9 +480,11 @@ class MainGui(tk.Frame):
 
 
     @staticmethod
-    def profilingAnalysis(profiling_text, pdf_btn):
+    def profilingAnalysis(profiling_text, pdf_btn, wc_button, analysis_btn):
         profiling_text.config(state="normal")
-
+        pdf_btn.config(state="normal")
+        wc_button.config(state="normal")
+        analysis_btn.config(state=DISABLED)
 
         """Begin URL Analysis Here"""
         for key, value in urlDictionary.items():
@@ -519,7 +563,7 @@ class MainGui(tk.Frame):
 
     @staticmethod
     def exportPDF(case_id_input, lead_invest_input, extract_date_input, profiling_text, url_text):
-
+        
         pdf = fpdf.FPDF(format='letter')
         pdf.add_page()
         pdf.set_font("Arial", size=12)
