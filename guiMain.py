@@ -170,7 +170,7 @@ class MainGui(tk.Frame):
         currentVal = 0
         loadingBarFrame = tk.Frame(self, bd=10, bg="black")
         loadingBarFrame.grid(row=5, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1350, mode='determinate')
+        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1320, mode='determinate')
         self.loadingBar.grid(row=0, column=1)
         """loadingBar Ends Here"""
 
@@ -178,21 +178,21 @@ class MainGui(tk.Frame):
         analysis_frame = tk.Frame(self, bd=10, bg="black")
         analysis_frame.grid(row=6, column=0, sticky=tk.W)
 
-        url_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
+        url_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
         url_text.grid(row=1, column=1)
         url_file_txt = tk.Label(analysis_frame, text="URL History", bg="black", fg="white", font="bold")
         url_file_txt.grid(row=0, column=1)
         """URL Text Area Ends Here"""
 
         """Services Text Start Here"""
-        services_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
+        services_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
         services_text.grid(row=1, column=2)
         services_file_txt = tk.Label(analysis_frame, text="Target's Running Services", bg="black", fg="white", font="bold")
         services_file_txt.grid(row=0, column=2)
         """Services Text Ends Here"""
 
         """Hardware Text Area Start Here"""
-        hardware_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white")
+        hardware_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
         hardware_text.grid(row=1, column=3)
         hardware_file_txt = tk.Label(analysis_frame, text="Hardware", bg="black", fg="white", font="bold")
         hardware_file_txt.grid(row=0, column=3)
@@ -202,7 +202,7 @@ class MainGui(tk.Frame):
         profiling_frame = tk.Frame(self, bd=10, bg="black")
         profiling_frame.grid(row=7, column=0)
 
-        profiling_text = tk.Text(profiling_frame, width=171, height=13, state=DISABLED, bg="black", fg="white")
+        profiling_text = tk.Text(profiling_frame, width=171, height=13, state=DISABLED, bg="black", fg="white", font=("Arial", 12))
         profiling_text.grid(row=1, column=1)
         profiling_file_txt = tk.Label(profiling_frame, text="Profiling", bg="black", fg="white", font="bold")
         profiling_file_txt.grid(row=0, column=1)
@@ -563,7 +563,7 @@ class MainGui(tk.Frame):
 
     @staticmethod
     def exportPDF(case_id_input, lead_invest_input, extract_date_input, profiling_text, url_text):
-        
+
         pdf = fpdf.FPDF(format='letter')
         pdf.add_page()
         pdf.set_font("Arial", size=12)
