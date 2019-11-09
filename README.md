@@ -41,7 +41,7 @@
 ### We will be referring to :
 - the suspect as 'Target'
 - the investigator as 'User'
-- the BashBunny as 'device'
+- the BashBunny as 'Device'
 
 1. User loads the contents of the "switch2.zip" file into the Device's "Payloads" folder.
 2. User ensures that the Device mode is in 'AttackMode2' which is the center switch and plug it into the Target's PC.
