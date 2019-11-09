@@ -6,6 +6,16 @@
 - The Target PC is running Windows 7 and Later
 - The Target PC does not have other anti-virus software aside from Windows Defender as the Payloads are invasive
 
+## Information that can be gathered
+- Hardware
+  - BIOS, CPU, COM & Serial Devices, RAM and other Hardware related data
+- Network
+  - Browser History, Target MAC + IP Address and other Network related data
+- Software
+  - Installed Drivers, Software, Running Processes and Services, OS and other related data
+- Accounts
+  - Local-User Passwords, Wifi Passwords
+
 
 ## You will need the following external libraries & programms installed
 - Payloads from our GitHub inside "Switch2.zip" when BashBunny is in "Storage" mode
