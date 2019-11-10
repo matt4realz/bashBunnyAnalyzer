@@ -8,7 +8,6 @@ import unicodedata
 from os import getcwd
 from tkinter import filedialog
 
-
 """For Derek's Services"""
 import pandas as pd
 
@@ -17,8 +16,8 @@ import re
 from collections import OrderedDict
 import urllib
 from urllib.parse import urlparse
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
+#from wordcloud import WordCloud
+#import matplotlib.pyplot as plt
 
 
 class MainGui(tk.Frame):
@@ -93,17 +92,20 @@ class MainGui(tk.Frame):
         investigation_row_frame = tk.Frame(self, bd=10, bg="black")
         investigation_row_frame.grid(row=1, column=0, columnspan=12, sticky=(tk.W, tk.E))
 
-        case_id_lbl = tk.Label(investigation_row_frame, text="Case ID :", bg="black", fg="white", padx=27.5, font="bold")
+        case_id_lbl = tk.Label(investigation_row_frame, text="Case ID :", bg="black", fg="white", padx=27.5,
+                               font="bold")
         case_id_lbl.grid(row=0, column=1)
         case_id_input = tk.Entry(investigation_row_frame, width=20, bg="white", fg="black")
         case_id_input.grid(row=0, column=2)
 
-        lead_invest_lbl = tk.Label(investigation_row_frame, text="Lead Investigator :", bg="black", fg="white", padx=2, font="bold")
+        lead_invest_lbl = tk.Label(investigation_row_frame, text="Lead Investigator :", bg="black", fg="white", padx=2,
+                                   font="bold")
         lead_invest_lbl.grid(row=1, column=1)
         lead_invest_input = tk.Entry(investigation_row_frame, width=20, bg="white", fg="black")
         lead_invest_input.grid(row=1, column=2)
 
-        extract_date_lbl = tk.Label(investigation_row_frame, text="Extracted Date :", bg="black", fg="white", padx=9, font="bold")
+        extract_date_lbl = tk.Label(investigation_row_frame, text="Extracted Date :", bg="black", fg="white", padx=9,
+                                    font="bold")
         extract_date_lbl.grid(row=2, column=1)
         extract_date_input = tk.Entry(investigation_row_frame, width=20, bg="white", fg="black")
         extract_date_input.grid(row=2, column=2)
@@ -120,8 +122,7 @@ class MainGui(tk.Frame):
 
             """Generate word cloud based on dictionary"""
             wc = WordCloud(background_color="black", width=2000, height=2000, contour_color="black", max_words=30,
-                           colormap="hsv", prefer_horizontal=0.85,
-                           relative_scaling=0.3, normalize_plurals=False).generate_from_frequencies(priority_dict)
+                           relative_scaling=0.5, normalize_plurals=False).generate_from_frequencies(priority_dict)
 
             fig = plt.figure(figsize=(10, 7))
             fig.suptitle("Top 30 Most Visited Websites")
@@ -129,32 +130,30 @@ class MainGui(tk.Frame):
             plt.axis("on")
             plt.show()
 
-
-
-
         """Button Frame"""
         button_row_frame = tk.Frame(self, bd=10, bg="black")
         button_row_frame.grid(row=2, column=0, columnspan=12, sticky=(tk.W, tk.E))
 
-
         """Do All Method Button Starts Here"""
-        analysis_btn = tk.Button(button_row_frame, text="Analyze Files", bg="white", fg="black", font="bold", padx="30", command=lambda: self.loadBar() &
-                                                                                         self.urlHistory(url_text,
-                                                                                                         self.stopwords) & self.servicesAnalysis(
-            services_text)
-                                                                                         & self.hardwareAnalysis(
-            hardware_text)
-                                                                                         & self.profilingAnalysis(
-            profiling_text, pdf_btn, wc_button, analysis_btn))
+        analysis_btn = tk.Button(button_row_frame, text="Analyze Files", bg="white", fg="black", font="bold", padx="30",
+                                 command=lambda: self.loadBar() &
+                                                 self.urlHistory(url_text,
+                                                                 self.stopwords) & self.servicesAnalysis(
+                                     services_text)
+                                                 & self.hardwareAnalysis(
+                                     hardware_text)
+                                                 & self.profilingAnalysis(
+                                     profiling_text, pdf_btn, wc_button, analysis_btn))
         analysis_btn.grid(row=0, column=1)
         """Do All Method Button Ends Here"""
 
         """PDF Button"""
         pdf_btn = tk.Button(button_row_frame, text="Export To PDF", bg="white",
-                            fg="black", state=DISABLED, font="bold", padx="30", command=lambda: self.exportPDF(case_id_input,
-                                                                                                   lead_invest_input,
-                                                                                                   extract_date_input,
-                                                                                                   profiling_text, url_text))
+                            fg="black", state=DISABLED, font="bold", padx="30",
+                            command=lambda: self.exportPDF(case_id_input,
+                                                           lead_invest_input,
+                                                           extract_date_input,
+                                                           profiling_text, url_text))
         pdf_btn.grid(row=0, column=2)
         """PDF Button"""
 
@@ -163,15 +162,12 @@ class MainGui(tk.Frame):
                               padx="30", state=DISABLED, command=lambda: generate_wordcloud())
         wc_button.grid(row=0, column=3)
 
-        
-
-
         """loadingBar Starts Here"""
         maxVal = 100
         currentVal = 0
         loadingBarFrame = tk.Frame(self, bd=10, bg="black")
         loadingBarFrame.grid(row=5, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1320, mode='determinate')
+        self.loadingBar = Progressbar(loadingBarFrame, orient=HORIZONTAL, length=1530, mode='determinate')
         self.loadingBar.grid(row=0, column=1)
         """loadingBar Ends Here"""
 
@@ -179,21 +175,25 @@ class MainGui(tk.Frame):
         analysis_frame = tk.Frame(self, bd=10, bg="black")
         analysis_frame.grid(row=6, column=0, sticky=tk.W)
 
-        url_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
+        url_text = tk.Text(analysis_frame, width=65, height=17, state=DISABLED, bg="black", fg="white",
+                           font=("Arial", 11))
         url_text.grid(row=1, column=1)
         url_file_txt = tk.Label(analysis_frame, text="URL History", bg="black", fg="white", font="bold")
         url_file_txt.grid(row=0, column=1)
         """URL Text Area Ends Here"""
 
         """Services Text Start Here"""
-        services_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
+        services_text = tk.Text(analysis_frame, width=65, height=17, state=DISABLED, bg="black", fg="white",
+                                font=("Arial", 11))
         services_text.grid(row=1, column=2)
-        services_file_txt = tk.Label(analysis_frame, text="Target's Running Services", bg="black", fg="white", font="bold")
+        services_file_txt = tk.Label(analysis_frame, text="Target's Running Services", bg="black", fg="white",
+                                     font="bold")
         services_file_txt.grid(row=0, column=2)
         """Services Text Ends Here"""
 
         """Hardware Text Area Start Here"""
-        hardware_text = tk.Text(analysis_frame, width=56, height=17, state=DISABLED, bg="black", fg="white", font=("Arial", 11))
+        hardware_text = tk.Text(analysis_frame, width=64, height=17, state=DISABLED, bg="black", fg="white",
+                                font=("Arial", 11))
         hardware_text.grid(row=1, column=3)
         hardware_file_txt = tk.Label(analysis_frame, text="Hardware", bg="black", fg="white", font="bold")
         hardware_file_txt.grid(row=0, column=3)
@@ -203,7 +203,8 @@ class MainGui(tk.Frame):
         profiling_frame = tk.Frame(self, bd=10, bg="black")
         profiling_frame.grid(row=7, column=0)
 
-        profiling_text = tk.Text(profiling_frame, width=171, height=13, state=DISABLED, bg="black", fg="white", font=("Arial", 12))
+        profiling_text = tk.Text(profiling_frame, width=173, height=13, state=DISABLED, bg="black", fg="white",
+                                 font=("Arial", 12))
         profiling_text.grid(row=1, column=1)
         profiling_file_txt = tk.Label(profiling_frame, text="Profiling", bg="black", fg="white", font="bold")
         profiling_file_txt.grid(row=0, column=1)
@@ -248,7 +249,7 @@ class MainGui(tk.Frame):
         def getWordsFromURL(url):
             url = re.sub(r'[^\x00-\x7F]+', '', url)
             '''gets rid of URL encoding characters for example %2f, %21, %22'''
-            #url = urllib.parse.unquote(url)
+            # url = urllib.parse.unquote(url)
             '''split url into words'''
             words = re.compile(r'[\:/?=\-&\#\+]+', re.UNICODE).split(url)
             for word in words:
@@ -303,8 +304,6 @@ class MainGui(tk.Frame):
         path = ("".join(path))
         url_main_key = ("".join(url_main_key))
 
-
-
         url_text.config(state=DISABLED)
         return 0
 
@@ -315,7 +314,8 @@ class MainGui(tk.Frame):
         global servicesList
         servicesList = []
         global systemDefence
-        systemDefence = ['1Password', 'Bitlocker', 'Dashlane', 'Windows Defender Antivirus Service', 'McAfee AP Service',
+        systemDefence = ['1Password', 'Bitlocker', 'Dashlane', 'Windows Defender Antivirus Service',
+                         'McAfee AP Service',
                          'McAfee Firewall Core Service',
                          'McAfee Module Core Service', 'McAfee PEF Service',
                          'McAfee Security Scan Component Host Service',
@@ -340,7 +340,6 @@ class MainGui(tk.Frame):
 
         systemDefence = ('\n'.join(systemDefence))
 
-
         services_text.insert(END, ('\n'.join(servicesList)))
 
         services_text.config(state=DISABLED)
@@ -349,7 +348,6 @@ class MainGui(tk.Frame):
     @staticmethod
     def hardwareAnalysis(hardware_text):
         hardware_text.config(state="normal")
-
 
         """Begin Method Here"""
 
@@ -375,7 +373,7 @@ class MainGui(tk.Frame):
         global windows
         windows = []
         cpu_file = pd.read_csv("filesForTesting/CPU.txt", delim_whitespace=True, header=None,
-                                   names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                               names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         windows.append(
             "Hardware Specs: " + cpu_file.c[1] + cpu_file.d[1] + cpu_file.e[1] + cpu_file.f[1] + cpu_file.g[1] +
             cpu_file.h[1])
@@ -384,13 +382,12 @@ class MainGui(tk.Frame):
         global os_info
         os_info = []
         operatingsys = pd.read_csv("filesForTesting/Operating System.txt", delim_whitespace=True, header=None,
-                                       names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                   names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         os_info.append("OS: " + operatingsys.c[0] + " " + operatingsys.d[0] + " " + operatingsys.e[0])
         os_info = ("\n".join(os_info))
 
-
         user_file = pd.read_csv("filesForTesting/Local-User.txt", delim_whitespace=True, header=None,
-                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = user_file.shape[0]
         i = 2
         global users
@@ -400,9 +397,8 @@ class MainGui(tk.Frame):
             i = i + 1;
         users = ("\n".join(users))
 
-
         ram = pd.read_csv("filesForTesting/RAM.txt", delim_whitespace=True, header=None,
-                              names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                          names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = ram.shape[0]
         i = 3
         global ram_info
@@ -412,17 +408,17 @@ class MainGui(tk.Frame):
             i = i + 1;
         ram_info = ("\n".join(ram_info))
 
-
         win_user_pass = pd.read_csv("filesForTesting/Windows User Passwords.txt", delim_whitespace=True, header=None,
-                                        names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
+                                    names=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"])
         count_row = win_user_pass.shape[0]
         i = 2
         global passwordlist
         passwordlist = []
         while (i < count_row):
             passwordlist.append(
-                    "URL: " + win_user_pass.a[i] + '\n' + "Username: " + win_user_pass.b[i] + '\n' + "Password: " + win_user_pass.c[
-                        i] + '\n')
+                "URL: " + win_user_pass.a[i] + '\n' + "Username: " + win_user_pass.b[i] + '\n' + "Password: " +
+                win_user_pass.c[
+                    i] + '\n')
             i = i + 1;
         passwordlist = ("\n".join(passwordlist))
 
@@ -479,7 +475,6 @@ class MainGui(tk.Frame):
         hardware_text.config(state=DISABLED)
         return 0
 
-
     @staticmethod
     def profilingAnalysis(profiling_text, pdf_btn, wc_button, analysis_btn):
         profiling_text.config(state="normal")
@@ -521,10 +516,10 @@ class MainGui(tk.Frame):
                     profilingList[key] = key
                     profilingList[value] = value
 
-
                 if key in healthFitness:
                     profiling_text.insert(END, 'The target displays potential narcissistic / self-concious traits '
-                                               'as the target has viewed ' + "'" + key + "'" + ' a total of ' + "'" + str(value) + "'" + ' times.')
+                                               'as the target has viewed ' + "'" + key + "'" + ' a total of ' + "'" + str(
+                        value) + "'" + ' times.')
 
                     profiling_text.insert(END, '\n')
                     profilingList[key] = key
@@ -552,15 +547,12 @@ class MainGui(tk.Frame):
         pdf_btn.config(state="normal")
         return 0
 
-
     @staticmethod
     def reset_frame(url_input_path, url_text, url_button_btn):
         url_input_path.config(text="")
         url_text.config(text="")
         url_button_btn.config(state="normal")
         return 0
-
-
 
     @staticmethod
     def exportPDF(case_id_input, lead_invest_input, extract_date_input, profiling_text, url_text):
@@ -573,9 +565,9 @@ class MainGui(tk.Frame):
         pdf.ln()
         pdf.write(10, "=================================")
         pdf.ln()
-        pdf.write(8, "Case ID : "+str(case_id_input.get()))
+        pdf.write(8, "Case ID : " + str(case_id_input.get()))
         pdf.ln()
-        pdf.write(8, "Lead Investigator : "+str(lead_invest_input.get()))
+        pdf.write(8, "Lead Investigator : " + str(lead_invest_input.get()))
         pdf.ln()
         pdf.write(8, "Data Extracted Date : " + str(extract_date_input.get()))
         pdf.ln()
@@ -584,9 +576,9 @@ class MainGui(tk.Frame):
         pdf.ln()
         pdf.write(10, "=================================")
         pdf.ln()
-        for k,v in urlDictionary.items():
+        for k, v in urlDictionary.items():
             if v > 15:
-                pdf.write(8, k + ' - ' + str(v)+'hits')
+                pdf.write(8, k + ' - ' + str(v) + 'hits')
                 pdf.ln()
 
         pdf.ln()
@@ -605,7 +597,6 @@ class MainGui(tk.Frame):
         pdf.ln()
         pdf.write(8, "========================")
         pdf.ln()
-
 
         pdf.write(8, storagedevice)
         pdf.ln()
@@ -633,10 +624,3 @@ class MainGui(tk.Frame):
         pdf.output("Report.pdf")
 
         return 0
-
-
-
-
-
-
-
