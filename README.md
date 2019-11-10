@@ -20,6 +20,7 @@
 ## You will need the following external libraries & programms installed
 - Payloads from our GitHub inside "Switch2.zip" when BashBunny is in "Storage" mode
 - Python3 and above
+- PyCharm
 - tkinter (pip install tkinter)
 - pandas (pip install pandas)
 - fpdf (pip install fpdf)
