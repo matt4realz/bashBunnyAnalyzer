@@ -120,7 +120,8 @@ class MainGui(tk.Frame):
 
             """Generate word cloud based on dictionary"""
             wc = WordCloud(background_color="black", width=2000, height=2000, contour_color="black", max_words=30,
-                           relative_scaling=0.5, normalize_plurals=False).generate_from_frequencies(priority_dict)
+                           colormap="hsv", prefer_horizontal=0.85,
+                           relative_scaling=0.3, normalize_plurals=False).generate_from_frequencies(priority_dict)
 
             fig = plt.figure(figsize=(10, 7))
             fig.suptitle("Top 30 Most Visited Websites")
