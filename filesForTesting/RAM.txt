@@ -1,5 +1,0 @@
-﻿RAM: 8.0 GB
-DeviceLocator  Capacity ConfiguredClockSpeed ConfiguredVoltage
--------------  -------- -------------------- -----------------
-ChannelA-DIMM0 4.0 GB                   2400              1200
-ChannelB-DIMM0 4.0 GB                   2400              1200
