@@ -1,5 +1,0 @@
-﻿Name                            VideoProcessor               DriverVersion CurrentHorizontalResolution CurrentVerticalR
-                                                                                                              esolution
-----                            --------------               ------------- --------------------------- ----------------
-Intel(R) UHD Graphics 620       Intel(R) UHD Graphics Family 23.20.16.4973                        1920             1080
-Citrix Indirect Display Adapter                              10.50.21.200
